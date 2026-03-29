@@ -1,196 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Affinity VR</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-<!-- Photon JS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/photon-javascript@5.0.0/build/photon.min.js"></script>
-<style>
-  /* Reset */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Roboto', sans-serif; background-color: #111; color: #fff; overflow-x: hidden; }
-  a { text-decoration: none; color: inherit; }
-
-  :root {
-    --primary: #0ff; /* Cyan */
-    --secondary: #f0f; /* Magenta */
-    --accent: #ff0; /* Yellow */
-  }
-
-  header {
-    background: #111;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    border-bottom: 2px solid var(--primary);
-  }
-
-  header h1 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary);
-    font-size: 1.8rem;
-  }
-
-  nav a { margin-left: 1.5rem; font-weight: 500; font-size: 1rem; transition: 0.3s; }
-  nav a:hover { color: var(--secondary); text-shadow: 0 0 5px var(--secondary), 0 0 10px var(--secondary); }
-
-  section { min-height: 100vh; padding: 120px 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--primary); margin-bottom: 1rem; text-align: center; text-shadow: 0 0 10px var(--primary); }
-  p { font-size: 1rem; max-width: 800px; text-align: center; line-height: 1.6; color: #ccc; }
-
-  /* Homepage */
-  #home { background: #111 url('https://i.imgur.com/8kmH5LF.png') no-repeat center; background-size: cover; text-align: center; color: var(--primary); }
-  #home h2 { font-size: 3rem; margin-bottom: 1rem; }
-  #home p { font-size: 1.5rem; }
-
-  .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; }
-  .card { background: #222; border: 2px solid var(--primary); border-radius: 12px; padding: 1.5rem; width: 250px; transition: 0.3s; cursor: pointer; text-align: center; }
-  .card:hover { transform: translateY(-10px); border-color: var(--secondary); box-shadow: 0 0 20px var(--secondary); }
-  .card h3 { color: var(--accent); margin-bottom: 0.5rem; }
-
-  .cosmetics { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
-  .cosmetic-item { background: #222; border: 2px solid var(--primary); border-radius: 12px; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary); transition: 0.3s; cursor: pointer; }
-  .cosmetic-item:hover { border-color: var(--secondary); transform: scale(1.1); box-shadow: 0 0 15px var(--secondary); }
-
-  #stats { display: flex; flex-direction: column; align-items: center; gap: 1rem; color: var(--primary); margin-top: 2rem; }
-  .stat { font-size: 1.2rem; text-align: center; padding: 0.5rem 1rem; border: 2px solid var(--primary); border-radius: 8px; min-width: 200px; }
-
-  footer { background: #111; padding: 2rem; text-align: center; color: #555; border-top: 2px solid var(--primary); }
-
-  @media (max-width: 768px) {
-    .card-container, .cosmetics { flex-direction: column; align-items: center; }
-    header { flex-direction: column; gap: 0.5rem; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affinity - Horror Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Affinity</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#levels">Levels</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#game-stats">Game Stats</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-  <h1>Affinity VR</h1>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#lore">Lore</a>
-    <a href="#gameplay">Gameplay</a>
-    <a href="#cosmetics">Cosmetics</a>
-    <a href="#stats">Online Stats</a>
-  </nav>
-</header>
+    <section id="about">
+        <h2>About the Game</h2>
+        <p>Affinity is a psychological horror game where players navigate an eerie world filled with unsettling creatures and dangerous environments. The goal is to survive and uncover the dark secrets hidden within the game world. Players must stay vigilant, solve puzzles, and avoid terrifying encounters.</p>
+    </section>
 
-<section id="home">
-  <h2>Step Into Another Reality</h2>
-  <p>Affinity VR: Explore secret labs, unravel anomalies, and survive the unknown.</p>
-</section>
+    <section id="levels">
+        <h2>Levels</h2>
+        <div class="level">
+            <h3>Playable Levels</h3>
+            <ul id="playable-levels">
+                <li>Level 1: The Abandoned Hospital</li>
+                <li>Level 2: The Forgotten Asylum</li>
+            </ul>
+        </div>
+        <div class="level">
+            <h3>Coming Soon</h3>
+            <ul id="coming-soon-levels">
+                <li>???</li>
+                <li>???</li>
+            </ul>
+        </div>
+    </section>
 
-<section id="lore">
-  <h2>World of Affinity</h2>
-  <p>
-    Redwater was built underground to hide its true purpose. Officially, it's a physics lab pushing the limits of energy research. Unofficially, secret experiments on particle acceleration and temporal anomalies create unpredictable dangers.  
-    Explore levels like <strong>The Complex</strong> and <strong>The Sewers</strong>, each with unique threats, puzzles, and secrets waiting to be uncovered.
-  </p>
-  <div class="card-container">
-    <div class="card">
-      <h3>The Complex</h3>
-      <p>High-tech research floors filled with puzzles, traps, and experimental anomalies.</p>
-    </div>
-    <div class="card">
-      <h3>The Sewers</h3>
-      <p>Dark, winding tunnels hiding dangers both human and unnatural. Survival is key.</p>
-    </div>
-  </div>
-</section>
+    <section id="events">
+        <h2>Upcoming Events</h2>
+        <div class="event">
+            <h3>Major Event</h3>
+            <p>Date: TBD</p>
+        </div>
+        <div class="event">
+            <h3>Smaller Event</h3>
+            <p>Date: TBD</p>
+        </div>
+    </section>
 
-<section id="gameplay">
-  <h2>Gameplay & Objectives</h2>
-  <p>
-    In Affinity VR, players navigate challenging levels, complete objectives, and interact with other players. Solve puzzles, avoid anomalies, and progress through complex environments while customizing your experience. Multiplayer interaction is powered by Photon networking, allowing dynamic challenges in real-time.
-  </p>
-  <div class="card-container">
-    <div class="card">
-      <h3>Objectives</h3>
-      <p>Complete level-specific missions to unlock new areas and secrets.</p>
-    </div>
-    <div class="card">
-      <h3>Challenges</h3>
-      <p>Dynamic hazards, AI-controlled enemies, and multiplayer interactions test your skills.</p>
-    </div>
-    <div class="card">
-      <h3>Progression</h3>
-      <p>Unlock cosmetics, abilities, and secret lore as you explore deeper layers of Redwater.</p>
-    </div>
-  </div>
-</section>
+    <section id="community">
+        <h2>Community</h2>
+        <button onclick="window.location.href='mailto:contact@affinitygame.com'">Contact Us</button>
+        <button onclick="window.location.href='https://discord.gg/affinity'">Join our Discord</button>
+    </section>
 
-<section id="cosmetics">
-  <h2>Skins & Customization</h2>
-  <div class="cosmetics">
-    <div class="cosmetic-item">Cyber Suit</div>
-    <div class="cosmetic-item">Neon Mask</div>
-    <div class="cosmetic-item">Glitch Armor</div>
-    <div class="cosmetic-item">Holo Cape</div>
-  </div>
-  <p>Hover over items to preview them in interactive 3D-style highlights.</p>
-</section>
+    <section id="game-stats">
+        <h2>Game Stats</h2>
+        <div id="stats">
+            <p><strong>Player Count:</strong> <span id="player-count">Loading...</span></p>
+            <p><strong>Servers:</strong> <span id="server-info">Loading...</span></p>
+            <p><strong>Cosmetics:</strong> <span id="cosmetic-info">Loading...</span></p>
+        </div>
+    </section>
 
-<section id="stats">
-  <h2>Live Stats</h2>
-  <div class="stat" id="playersOnline">Players Online: 0</div>
-  <div class="stat" id="serversActive">Active Servers: 0</div>
-  <div class="stat" id="recentActivity">Recent Activity: None</div>
-</section>
+    <footer>
+        <p>Made by Foxx // CBS</p>
+    </footer>
 
-<footer>
-  &copy; 2026 Affinity VR | All Rights Reserved
-</footer>
-
-<script>
-  // -----------------------------
-  // Photon Live Stats Integration
-  // -----------------------------
-
-  // Replace with your actual Photon App ID
-  const APP_ID = "ff090058-ac4d-4695-bfce-d13766cc4b95";
-
-  // Create Photon client
-  const client = new Photon.LoadBalancing.LoadBalancingClient(APP_ID, "AffinityVR");
-
-  // Connect to master server (choose region: 'us', 'eu', etc.)
-  client.connectToRegionMaster("us");
-
-  client.onStateChange = function(state) {
-    console.log("Photon state:", state);
-  };
-
-  // When joined lobby
-  client.onJoinLobby = function() {
-    console.log("Joined Photon lobby");
-    updateStats();
-  };
-
-  // Lobby stats update
-  function updateStats() {
-    // Update player count
-    const playerCount = client.lobbyStats ? client.lobbyStats.reduce((sum, s) => sum + s.PlayerCount, 0) : 0;
-    document.getElementById('playersOnline').innerText = `Players Online: ${playerCount}`;
-
-    // Update server count
-    const serversCount = client.lobbyStats ? client.lobbyStats.length : 0;
-    document.getElementById('serversActive').innerText = `Active Servers: ${serversCount}`;
-
-    // Recent activity simulation
-    document.getElementById('recentActivity').innerText = `Recent Activity: Player_${Math.floor(Math.random() * 999)} joined`;
-
-    setTimeout(updateStats, 3000); // repeat every 3 seconds
-  }
-
-  // Join default lobby to get stats
-  client.enterLobby();
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
