@@ -1,1 +1,190 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affinity</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #0b0b0f;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(90deg, #1a1a2e, #16213e);
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+h1 {
+    margin: 0;
+    font-size: 3em;
+    font-family: 'Montserrat', sans-serif;
+    color: #00d4ff;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+nav a {
+    color: #00d4ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00ffa8;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    color: #00d4ff;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #141421;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #00ffa8;
+}
+
+.footer {
+    text-align: center;
+    padding: 25px;
+    background: #111;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.circle-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 212, 255, 0.08);
+    animation: float 12s infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-40px); }
+    100% { transform: translateY(0px); }
+}
+</style>
+</head>
+<body>
+
+<div class="circle-bg">
+    <div class="circle" style="width:220px;height:220px;top:5%;left:15%;"></div>
+    <div class="circle" style="width:320px;height:320px;top:55%;left:75%;"></div>
+    <div class="circle" style="width:160px;height:160px;top:35%;left:5%;"></div>
+</div>
+
+<header>
+    <h1>AFFINITY</h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#levels">Levels</a>
+        <a href="#features">Features</a>
+        <a href="#future">Future</a>
+    </nav>
+</header>
+
+<section id="about">
+    <h2>About The Game</h2>
+    <p>
+        Affinity is an immersive horror experience set in mysterious dimensions where players uncover hidden objectives and face unexpected threats.
+        Each level introduces unique mechanics and environments, challenging players to adapt and survive.
+    </p>
+</section>
+
+<section id="levels">
+    <h2>Levels</h2>
+    <div class="card-grid">
+        <div class="card">
+            <h3>The Complex</h3>
+            <p>A sprawling maze filled with intricate rooms, traps, and surprises around every corner.</p>
+        </div>
+        <div class="card">
+            <h3>The Sewers</h3>
+            <p>Dark, flooded tunnels hiding secrets beneath the surface. Tension rises with every step.</p>
+        </div>
+    </div>
+</section>
+
+<section id="features">
+    <h2>Game Features</h2>
+    <div class="card-grid">
+        <div class="card">
+            <h3>Open Exploration</h3>
+            <p>Freely navigate interconnected environments and uncover hidden paths and secrets.</p>
+        </div>
+        <div class="card">
+            <h3>Objectives</h3>
+            <p>Complete diverse tasks to unlock new areas and advance the story.</p>
+        </div>
+        <div class="card">
+            <h3>Horror Elements</h3>
+            <p>Face unpredictable events and entities that keep you on edge.</p>
+        </div>
+    </div>
+</section>
+
+<section id="future">
+    <h2>Future Updates</h2>
+    <ul>
+        <li>New levels and expanded environments</li>
+        <li>Multiplayer mode for shared experiences</li>
+        <li>Additional entities and interactive events</li>
+        <li>Expanded story and lore content</li>
+    </ul>
+</section>
+
+<div class="footer">
+    <p>© 2026 Affinity Game. All rights reserved.</p>
+</div>
+
+</body>
+</html>
