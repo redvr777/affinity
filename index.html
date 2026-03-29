@@ -3,193 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Affinity</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+<title>Affinity VR</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
+    /* General Styles */
+    body {
+        margin: 0;
+        font-family: 'Roboto Mono', monospace;
+        background-color: #2a2a2a;
+        color: #f0f0f0;
+        overflow-x: hidden;
+    }
 
-body {
-    background: #0b0f0c;
-    color: white;
-}
+    header {
+        background: linear-gradient(90deg, #ffb84d, #ff4d4d);
+        padding: 20px;
+        text-align: center;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 24px;
+        color: #000;
+        letter-spacing: 2px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
 
-/* NAVBAR */
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 60px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-}
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        background-color: #1e1e1e;
+        padding: 15px 0;
+        font-weight: bold;
+    }
 
-nav h1 {
-    color: #7CFF3C;
-}
+    nav a {
+        text-decoration: none;
+        color: #f0f0f0;
+        transition: 0.3s;
+    }
 
-nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-}
+    nav a:hover {
+        color: #ffb84d;
+    }
 
-/* HERO */
-.hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 100px 60px;
-}
+    .container {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
 
-.hero-text h2 {
-    font-size: 60px;
-}
+    .section {
+        margin-bottom: 80px;
+    }
 
-.hero-text span {
-    color: #7CFF3C;
-}
+    h2 {
+        font-family: 'Press Start 2P', cursive;
+        color: #ffb84d;
+        text-shadow: 2px 2px 5px #000;
+    }
 
-.hero-text p {
-    margin-top: 20px;
-    opacity: 0.7;
-}
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #ccc;
+    }
 
-.btn {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 25px;
-    background: #7CFF3C;
-    color: black;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
+    .warning {
+        background-color: #ff4d4d;
+        color: #000;
+        padding: 15px;
+        font-weight: bold;
+        text-align: center;
+        margin: 20px 0;
+        text-shadow: none;
+    }
 
-/* CARD GRID */
-.section {
-    padding: 80px 60px;
-}
+    .level-preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
 
-.section h2 {
-    font-size: 40px;
-    margin-bottom: 40px;
-}
+    .level-card {
+        background-color: #3a3a3a;
+        border: 2px solid #ffb84d;
+        padding: 15px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
+    .level-card:hover {
+        background-color: #4a4a4a;
+        transform: scale(1.05);
+    }
 
-.card {
-    background: #111;
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid rgba(124,255,60,0.2);
-    transition: 0.3s;
-}
+    .level-card img {
+        width: 100%;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 10px;
+    }
 
-.card:hover {
-    transform: translateY(-5px);
-    border-color: #7CFF3C;
-}
+    footer {
+        background-color: #1e1e1e;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #888;
+        border-top: 2px solid #ffb84d;
+    }
 
-/* FEATURES */
-.feature {
-    background: linear-gradient(145deg, #0f1a12, #0b0f0c);
-    padding: 40px;
-    border-radius: 20px;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 40px;
-    opacity: 0.5;
-}
 </style>
 </head>
-
 <body>
 
+<header>
+    AFFINITY VR
+</header>
+
 <nav>
-    <h1>AFFINITY</h1>
-    <div>
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#levels">Levels</a>
-        <a href="#future">Future</a>
-    </div>
+    <a href="#about">About</a>
+    <a href="#levels">Levels</a>
+    <a href="#events">Events</a>
+    <a href="#community">Community</a>
 </nav>
 
-<section class="hero">
-    <div class="hero-text">
-        <h2>Enter the World of <span>Affinity</span></h2>
-        <p>A psychological horror experience where reality bends and nothing stays the same.</p>
-        <a href="#" class="btn">Play Soon</a>
-    </div>
-</section>
+<div class="container">
 
-<section class="section" id="about">
-    <h2>About the Game</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Immersive Horror</h3>
-            <p>Explore environments that shift and react to your presence.</p>
-        </div>
-        <div class="card">
-            <h3>Story Driven</h3>
-            <p>Uncover the hidden truth behind the Affinity experiment.</p>
-        </div>
-        <div class="card">
-            <h3>Unpredictable</h3>
-            <p>No two playthroughs feel exactly the same.</p>
-        </div>
-    </div>
-</section>
+    <section class="section" id="about">
+        <h2>About Affinity</h2>
+        <p>Affinity VR is a thrilling horror game set in a mysterious underground facility. Explore industrial corridors, uncover secrets, and survive the dangers lurking in the shadows. Every room is designed to test your wits and courage.</p>
+        <div class="warning">WARNING: This game contains intense horror elements</div>
+    </section>
 
-<section class="section" id="levels">
-    <h2>Game Levels</h2>
-    <div class="grid">
-        <div class="feature">
-            <h3>The Complex</h3>
-            <p>A cold underground facility hiding something far beyond science.</p>
+    <section class="section" id="levels">
+        <h2>Levels</h2>
+        <div class="level-preview">
+            <div class="level-card">
+                <img src="https://via.placeholder.com/300x200/444444/ffb84d?text=Complex+Level" alt="Complex Level">
+                <strong>The Complex:</strong>
+                <p>Navigate through the lab corridors, solve puzzles, and avoid traps in this high-tech environment.</p>
+            </div>
+            <div class="level-card">
+                <img src="https://via.placeholder.com/300x200/444444/ffb84d?text=Sewers+Level" alt="Sewers Level">
+                <strong>The Sewers:</strong>
+                <p>Dark and damp, the sewers hide secrets and dangers. Can you survive the shadows?</p>
+            </div>
         </div>
-        <div class="feature">
-            <h3>The Sewers</h3>
-            <p>Dark, flooded tunnels where something is always watching.</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="section" id="future">
-    <h2>Future Updates</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>New Levels</h3>
-            <p>More dimensions and environments will be added.</p>
-        </div>
-        <div class="card">
-            <h3>Entities</h3>
-            <p>New creatures with advanced AI behavior.</p>
-        </div>
-        <div class="card">
-            <h3>Multiplayer (Planned)</h3>
-            <p>Experience Affinity with others... if you dare.</p>
-        </div>
-    </div>
-</section>
+    <section class="section" id="events">
+        <h2>Upcoming Events</h2>
+        <p>Join special in-game events, seasonal challenges, and community nights. Stay tuned for updates and exclusive content.</p>
+    </section>
+
+    <section class="section" id="community">
+        <h2>Community</h2>
+        <p>Connect with other players, share your experiences, and join our active Discord server to discuss strategies and stories from the game.</p>
+    </section>
+
+</div>
 
 <footer>
-    <p>© 2026 Affinity. All rights reserved.</p>
+    &copy; 2026 Affinity VR. All rights reserved.
 </footer>
 
 </body>
