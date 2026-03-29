@@ -4,169 +4,193 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Affinity VR</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<!-- Photon JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/photon-javascript@5.0.0/build/photon.min.js"></script>
 <style>
-    /* General Styles */
-    body {
-        margin: 0;
-        font-family: 'Roboto Mono', monospace;
-        background-color: #2a2a2a;
-        color: #f0f0f0;
-        overflow-x: hidden;
-    }
+  /* Reset */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Roboto', sans-serif; background-color: #111; color: #fff; overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
 
-    header {
-        background: linear-gradient(90deg, #ffb84d, #ff4d4d);
-        padding: 20px;
-        text-align: center;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 24px;
-        color: #000;
-        letter-spacing: 2px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
+  :root {
+    --primary: #0ff; /* Cyan */
+    --secondary: #f0f; /* Magenta */
+    --accent: #ff0; /* Yellow */
+  }
 
-    nav {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        background-color: #1e1e1e;
-        padding: 15px 0;
-        font-weight: bold;
-    }
+  header {
+    background: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 2px solid var(--primary);
+  }
 
-    nav a {
-        text-decoration: none;
-        color: #f0f0f0;
-        transition: 0.3s;
-    }
+  header h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary);
+    font-size: 1.8rem;
+  }
 
-    nav a:hover {
-        color: #ffb84d;
-    }
+  nav a { margin-left: 1.5rem; font-weight: 500; font-size: 1rem; transition: 0.3s; }
+  nav a:hover { color: var(--secondary); text-shadow: 0 0 5px var(--secondary), 0 0 10px var(--secondary); }
 
-    .container {
-        padding: 40px 20px;
-        max-width: 1200px;
-        margin: auto;
-    }
+  section { min-height: 100vh; padding: 120px 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--primary); margin-bottom: 1rem; text-align: center; text-shadow: 0 0 10px var(--primary); }
+  p { font-size: 1rem; max-width: 800px; text-align: center; line-height: 1.6; color: #ccc; }
 
-    .section {
-        margin-bottom: 80px;
-    }
+  /* Homepage */
+  #home { background: #111 url('https://i.imgur.com/8kmH5LF.png') no-repeat center; background-size: cover; text-align: center; color: var(--primary); }
+  #home h2 { font-size: 3rem; margin-bottom: 1rem; }
+  #home p { font-size: 1.5rem; }
 
-    h2 {
-        font-family: 'Press Start 2P', cursive;
-        color: #ffb84d;
-        text-shadow: 2px 2px 5px #000;
-    }
+  .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; }
+  .card { background: #222; border: 2px solid var(--primary); border-radius: 12px; padding: 1.5rem; width: 250px; transition: 0.3s; cursor: pointer; text-align: center; }
+  .card:hover { transform: translateY(-10px); border-color: var(--secondary); box-shadow: 0 0 20px var(--secondary); }
+  .card h3 { color: var(--accent); margin-bottom: 0.5rem; }
 
-    p {
-        font-size: 18px;
-        line-height: 1.6;
-        color: #ccc;
-    }
+  .cosmetics { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+  .cosmetic-item { background: #222; border: 2px solid var(--primary); border-radius: 12px; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary); transition: 0.3s; cursor: pointer; }
+  .cosmetic-item:hover { border-color: var(--secondary); transform: scale(1.1); box-shadow: 0 0 15px var(--secondary); }
 
-    .warning {
-        background-color: #ff4d4d;
-        color: #000;
-        padding: 15px;
-        font-weight: bold;
-        text-align: center;
-        margin: 20px 0;
-        text-shadow: none;
-    }
+  #stats { display: flex; flex-direction: column; align-items: center; gap: 1rem; color: var(--primary); margin-top: 2rem; }
+  .stat { font-size: 1.2rem; text-align: center; padding: 0.5rem 1rem; border: 2px solid var(--primary); border-radius: 8px; min-width: 200px; }
 
-    .level-preview {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
-    }
+  footer { background: #111; padding: 2rem; text-align: center; color: #555; border-top: 2px solid var(--primary); }
 
-    .level-card {
-        background-color: #3a3a3a;
-        border: 2px solid #ffb84d;
-        padding: 15px;
-        border-radius: 10px;
-        transition: 0.3s;
-    }
-
-    .level-card:hover {
-        background-color: #4a4a4a;
-        transform: scale(1.05);
-    }
-
-    .level-card img {
-        width: 100%;
-        border-radius: 5px;
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    footer {
-        background-color: #1e1e1e;
-        text-align: center;
-        padding: 20px;
-        font-size: 14px;
-        color: #888;
-        border-top: 2px solid #ffb84d;
-    }
-
+  @media (max-width: 768px) {
+    .card-container, .cosmetics { flex-direction: column; align-items: center; }
+    header { flex-direction: column; gap: 0.5rem; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-    AFFINITY VR
+  <h1>Affinity VR</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#lore">Lore</a>
+    <a href="#gameplay">Gameplay</a>
+    <a href="#cosmetics">Cosmetics</a>
+    <a href="#stats">Online Stats</a>
+  </nav>
 </header>
 
-<nav>
-    <a href="#about">About</a>
-    <a href="#levels">Levels</a>
-    <a href="#events">Events</a>
-    <a href="#community">Community</a>
-</nav>
+<section id="home">
+  <h2>Step Into Another Reality</h2>
+  <p>Affinity VR: Explore secret labs, unravel anomalies, and survive the unknown.</p>
+</section>
 
-<div class="container">
+<section id="lore">
+  <h2>World of Affinity</h2>
+  <p>
+    Redwater was built underground to hide its true purpose. Officially, it's a physics lab pushing the limits of energy research. Unofficially, secret experiments on particle acceleration and temporal anomalies create unpredictable dangers.  
+    Explore levels like <strong>The Complex</strong> and <strong>The Sewers</strong>, each with unique threats, puzzles, and secrets waiting to be uncovered.
+  </p>
+  <div class="card-container">
+    <div class="card">
+      <h3>The Complex</h3>
+      <p>High-tech research floors filled with puzzles, traps, and experimental anomalies.</p>
+    </div>
+    <div class="card">
+      <h3>The Sewers</h3>
+      <p>Dark, winding tunnels hiding dangers both human and unnatural. Survival is key.</p>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="about">
-        <h2>About Affinity</h2>
-        <p>Affinity VR is a thrilling horror game set in a mysterious underground facility. Explore industrial corridors, uncover secrets, and survive the dangers lurking in the shadows. Every room is designed to test your wits and courage.</p>
-        <div class="warning">WARNING: This game contains intense horror elements</div>
-    </section>
+<section id="gameplay">
+  <h2>Gameplay & Objectives</h2>
+  <p>
+    In Affinity VR, players navigate challenging levels, complete objectives, and interact with other players. Solve puzzles, avoid anomalies, and progress through complex environments while customizing your experience. Multiplayer interaction is powered by Photon networking, allowing dynamic challenges in real-time.
+  </p>
+  <div class="card-container">
+    <div class="card">
+      <h3>Objectives</h3>
+      <p>Complete level-specific missions to unlock new areas and secrets.</p>
+    </div>
+    <div class="card">
+      <h3>Challenges</h3>
+      <p>Dynamic hazards, AI-controlled enemies, and multiplayer interactions test your skills.</p>
+    </div>
+    <div class="card">
+      <h3>Progression</h3>
+      <p>Unlock cosmetics, abilities, and secret lore as you explore deeper layers of Redwater.</p>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="levels">
-        <h2>Levels</h2>
-        <div class="level-preview">
-            <div class="level-card">
-                <img src="https://via.placeholder.com/300x200/444444/ffb84d?text=Complex+Level" alt="Complex Level">
-                <strong>The Complex:</strong>
-                <p>Navigate through the lab corridors, solve puzzles, and avoid traps in this high-tech environment.</p>
-            </div>
-            <div class="level-card">
-                <img src="https://via.placeholder.com/300x200/444444/ffb84d?text=Sewers+Level" alt="Sewers Level">
-                <strong>The Sewers:</strong>
-                <p>Dark and damp, the sewers hide secrets and dangers. Can you survive the shadows?</p>
-            </div>
-        </div>
-    </section>
+<section id="cosmetics">
+  <h2>Skins & Customization</h2>
+  <div class="cosmetics">
+    <div class="cosmetic-item">Cyber Suit</div>
+    <div class="cosmetic-item">Neon Mask</div>
+    <div class="cosmetic-item">Glitch Armor</div>
+    <div class="cosmetic-item">Holo Cape</div>
+  </div>
+  <p>Hover over items to preview them in interactive 3D-style highlights.</p>
+</section>
 
-    <section class="section" id="events">
-        <h2>Upcoming Events</h2>
-        <p>Join special in-game events, seasonal challenges, and community nights. Stay tuned for updates and exclusive content.</p>
-    </section>
-
-    <section class="section" id="community">
-        <h2>Community</h2>
-        <p>Connect with other players, share your experiences, and join our active Discord server to discuss strategies and stories from the game.</p>
-    </section>
-
-</div>
+<section id="stats">
+  <h2>Live Stats</h2>
+  <div class="stat" id="playersOnline">Players Online: 0</div>
+  <div class="stat" id="serversActive">Active Servers: 0</div>
+  <div class="stat" id="recentActivity">Recent Activity: None</div>
+</section>
 
 <footer>
-    &copy; 2026 Affinity VR. All rights reserved.
+  &copy; 2026 Affinity VR | All Rights Reserved
 </footer>
+
+<script>
+  // -----------------------------
+  // Photon Live Stats Integration
+  // -----------------------------
+
+  // Replace with your actual Photon App ID
+  const APP_ID = "ff090058-ac4d-4695-bfce-d13766cc4b95";
+
+  // Create Photon client
+  const client = new Photon.LoadBalancing.LoadBalancingClient(APP_ID, "AffinityVR");
+
+  // Connect to master server (choose region: 'us', 'eu', etc.)
+  client.connectToRegionMaster("us");
+
+  client.onStateChange = function(state) {
+    console.log("Photon state:", state);
+  };
+
+  // When joined lobby
+  client.onJoinLobby = function() {
+    console.log("Joined Photon lobby");
+    updateStats();
+  };
+
+  // Lobby stats update
+  function updateStats() {
+    // Update player count
+    const playerCount = client.lobbyStats ? client.lobbyStats.reduce((sum, s) => sum + s.PlayerCount, 0) : 0;
+    document.getElementById('playersOnline').innerText = `Players Online: ${playerCount}`;
+
+    // Update server count
+    const serversCount = client.lobbyStats ? client.lobbyStats.length : 0;
+    document.getElementById('serversActive').innerText = `Active Servers: ${serversCount}`;
+
+    // Recent activity simulation
+    document.getElementById('recentActivity').innerText = `Recent Activity: Player_${Math.floor(Math.random() * 999)} joined`;
+
+    setTimeout(updateStats, 3000); // repeat every 3 seconds
+  }
+
+  // Join default lobby to get stats
+  client.enterLobby();
+</script>
 
 </body>
 </html>
