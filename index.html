@@ -3,33 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Affinity VR - Home</title>
-<link rel="stylesheet" href="retro.css">
+<title>Affinity</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #0b0f0c;
+    color: white;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+}
+
+nav h1 {
+    color: #7CFF3C;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 60px;
+}
+
+.hero-text h2 {
+    font-size: 60px;
+}
+
+.hero-text span {
+    color: #7CFF3C;
+}
+
+.hero-text p {
+    margin-top: 20px;
+    opacity: 0.7;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 25px;
+    background: #7CFF3C;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CARD GRID */
+.section {
+    padding: 80px 60px;
+}
+
+.section h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #111;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(124,255,60,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #7CFF3C;
+}
+
+/* FEATURES */
+.feature {
+    background: linear-gradient(145deg, #0f1a12, #0b0f0c);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.5;
+}
+</style>
 </head>
+
 <body>
 
-<header>
-    <h1>Affinity VR</h1>
-</header>
-
 <nav>
-    <a href="index.html">Home</a>
-    <a href="lore.html">Lore</a>
-    <a href="gameplay.html">Gameplay</a>
-    <a href="shop.html">Shop</a>
-    <a href="servers.html">Servers</a>
-    <a href="leaderboard.html">Leaderboard</a>
-    <a href="events.html">Events</a>
+    <h1>AFFINITY</h1>
+    <div>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#levels">Levels</a>
+        <a href="#future">Future</a>
+    </div>
 </nav>
 
-<main>
-    <h2>Welcome to Affinity VR</h2>
-    <p>Step into the horror VR experience like no other. Two main levels, terrifying enemies, and a story that unfolds beneath Redwater. Prepare your headset for March 28th 2026, 7:00 p.m. EST!</p>
-    <p><a href="https://discord.gg/4EbVcQNmZ" target="_blank"><button>Join Our Discord</button></a></p>
-</main>
+<section class="hero">
+    <div class="hero-text">
+        <h2>Enter the World of <span>Affinity</span></h2>
+        <p>A psychological horror experience where reality bends and nothing stays the same.</p>
+        <a href="#" class="btn">Play Soon</a>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <h2>About the Game</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Immersive Horror</h3>
+            <p>Explore environments that shift and react to your presence.</p>
+        </div>
+        <div class="card">
+            <h3>Story Driven</h3>
+            <p>Uncover the hidden truth behind the Affinity experiment.</p>
+        </div>
+        <div class="card">
+            <h3>Unpredictable</h3>
+            <p>No two playthroughs feel exactly the same.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="levels">
+    <h2>Game Levels</h2>
+    <div class="grid">
+        <div class="feature">
+            <h3>The Complex</h3>
+            <p>A cold underground facility hiding something far beyond science.</p>
+        </div>
+        <div class="feature">
+            <h3>The Sewers</h3>
+            <p>Dark, flooded tunnels where something is always watching.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="future">
+    <h2>Future Updates</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>New Levels</h3>
+            <p>More dimensions and environments will be added.</p>
+        </div>
+        <div class="card">
+            <h3>Entities</h3>
+            <p>New creatures with advanced AI behavior.</p>
+        </div>
+        <div class="card">
+            <h3>Multiplayer (Planned)</h3>
+            <p>Experience Affinity with others... if you dare.</p>
+        </div>
+    </div>
+</section>
 
 <footer>
-    &copy; 2026 Affinity VR
+    <p>© 2026 Affinity. All rights reserved.</p>
 </footer>
 
 </body>
