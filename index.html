@@ -157,6 +157,7 @@
   .btn-discord:hover { background: rgba(88,101,242,0.12); border-color: rgba(88,101,242,0.6); }
 
   #stats { border-top: 1px solid var(--border); }
+  #shop  { border-top: 1px solid var(--border); }
   .stats-note { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 40px; padding: 12px 16px; border: 1px solid var(--border); display: inline-block; }
   .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .stat-panel { background: var(--surface); border: 1px solid var(--border); padding: 30px 26px; }
@@ -212,6 +213,7 @@
     <li><a href="#levels">Levels</a></li>
     <li><a href="#events">Events</a></li>
     <li><a href="#community">Community</a></li>
+    <li><a href="#shop">Shop</a></li>
     <li><a href="#stats">Stats</a></li>
   </ul>
 </nav>
@@ -321,9 +323,26 @@
   </div>
 </section>
 
+<section id="shop">
+  <div class="container">
+    <div class="section-label">05 — Shop</div>
+    <h2 class="section-title">Available Now</h2>
+    <div class="stats-grid">
+      <div class="stat-panel">
+        <div class="stat-panel-label">Cosmetics — BX</div>
+        <div class="cosmetic-list" id="cosmetic-list"></div>
+      </div>
+      <div class="stat-panel">
+        <div class="stat-panel-label">Bundles — Real Money</div>
+        <div class="bundle-list" id="bundle-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="stats">
   <div class="container">
-    <div class="section-label">05 — Live</div>
+    <div class="section-label">06 — Live</div>
     <h2 class="section-title">Game Stats</h2>
     <div class="stats-note">Live data via Firebase</div>
     <div class="stats-grid">
@@ -337,14 +356,6 @@
         <div class="server-list" id="server-list">
           <div class="error-text"><span class="loading-pulse"></span> Fetching rooms...</div>
         </div>
-      </div>
-      <div class="stat-panel">
-        <div class="stat-panel-label">Shop — Available Now</div>
-        <div class="cosmetic-list" id="cosmetic-list"></div>
-      </div>
-      <div class="stat-panel">
-        <div class="stat-panel-label">Bundles — Real Money</div>
-        <div class="bundle-list" id="bundle-list"></div>
       </div>
     </div>
   </div>
