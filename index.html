@@ -143,35 +143,23 @@
   .event-item.clickable .event-name::after { content: ' →'; font-size: 13px; color: var(--danger); opacity: 0; transition: opacity 0.3s; }
   .event-item.clickable:hover .event-name::after { opacity: 1; }
 
-  /* Leak overlay */
+
   #leak-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 5000;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    position: fixed; inset: 0; z-index: 5000;
+    display: none; opacity: 0; transition: opacity 0.4s ease;
   }
   #leak-overlay.active { display: block; }
   #leak-overlay.visible { opacity: 1; }
   #leak-close {
-    position: fixed;
-    top: 24px; right: 30px;
-    z-index: 6000;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: #6e6e6e;
-    background: transparent;
-    border: 1px solid #2a2a2a;
-    padding: 8px 16px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    display: none;
+    position: fixed; top: 24px; right: 30px; z-index: 6000;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3em;
+    color: #6e6e6e; background: transparent; border: 1px solid #2a2a2a;
+    padding: 8px 16px; cursor: pointer; text-transform: uppercase;
+    transition: all 0.3s; display: none;
   }
   #leak-close.active { display: block; }
   #leak-close:hover { color: #c8c2b4; border-color: #8b0000; }
+
   .event-date { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; }
   .event-name { font-size: 18px; font-weight: 300; color: var(--white); font-style: italic; }
   .event-desc { font-size: 13px; color: var(--muted); margin-top: 3px; }
@@ -189,6 +177,8 @@
   .btn-contact:hover { color: var(--white); border-color: var(--accent); background: rgba(139,115,85,0.06); }
   .btn-discord { color: #8b9dc3; border-color: rgba(88,101,242,0.3); background: rgba(88,101,242,0.05); }
   .btn-discord:hover { background: rgba(88,101,242,0.12); border-color: rgba(88,101,242,0.6); }
+  .btn-mod { color: var(--accent); border-color: rgba(139,115,85,0.35); background: rgba(139,115,85,0.04); }
+  .btn-mod:hover { color: var(--white); border-color: var(--accent); background: rgba(139,115,85,0.1); }
 
   #stats { border-top: 1px solid var(--border); }
   #shop  { border-top: 1px solid var(--border); }
@@ -227,6 +217,120 @@
   .footer-logo   { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.3em; }
   .footer-credit { font-family: var(--font-mono); font-size: 9px; color: #2a2520; letter-spacing: 0.15em; user-select: none; }
 
+
+  #mod-overlay {
+    position: fixed; inset: 0; z-index: 5100;
+    display: none; opacity: 0;
+    transition: opacity 0.4s ease;
+    overflow-y: auto;
+    background: var(--bg);
+  }
+  #mod-overlay.active { display: block; }
+  #mod-overlay.visible { opacity: 1; }
+
+  #mod-back {
+    position: fixed; top: 24px; left: 30px; z-index: 6100;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3em;
+    color: #6e6e6e; background: transparent; border: 1px solid #2a2a2a;
+    padding: 8px 16px; cursor: pointer; text-transform: uppercase;
+    transition: all 0.3s; display: none;
+  }
+  #mod-back.active { display: block; }
+  #mod-back:hover { color: #c8c2b4; border-color: var(--accent); }
+
+  .mod-hero {
+    min-height: 45vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 40px 60px; position: relative; overflow: hidden;
+  }
+  .mod-hero-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .mod-hero-lines::before {
+    content: ''; position: absolute; border-radius: 50%;
+    border: 1px solid rgba(139,115,85,0.05);
+    width: 900px; height: 900px; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  }
+  .mod-eyebrow {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.45em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 20px;
+    animation: fadeUp 1s ease both;
+  }
+  .mod-title {
+    font-family: var(--font-serif); font-size: clamp(48px,10vw,110px); font-weight: 300;
+    letter-spacing: 0.15em; color: var(--white); line-height: 1; margin-bottom: 16px;
+    font-style: italic; animation: fadeUp 1s 0.15s ease both;
+    text-shadow: 0 0 60px rgba(139,115,85,0.07);
+  }
+  .mod-subtitle {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.35em;
+    color: var(--muted); text-transform: uppercase; animation: fadeUp 1s 0.3s ease both;
+  }
+  .mod-hero-divider {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    margin: 40px auto 0; animation: fadeUp 1s 0.45s ease both;
+  }
+
+  .mod-form-wrap {
+    max-width: 860px; margin: 0 auto;
+    padding: 60px 60px 100px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .mod-section {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 30px 32px; margin-bottom: 2px; position: relative; overflow: hidden;
+  }
+  .mod-section::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--accent2);
+  }
+  .mod-section-title {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .mod-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .mod-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+  .mod-field:last-child { margin-bottom: 0; }
+  .mod-label {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--muted);
+    user-select: text;
+  }
+  .mod-input, .mod-textarea {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    padding: 11px 14px; color: var(--text); font-family: var(--font-serif);
+    font-size: 16px; width: 100%; transition: border-color 0.25s;
+    outline: none; user-select: text; cursor: text;
+  }
+  .mod-textarea { resize: vertical; min-height: 90px; }
+  .mod-input:focus, .mod-textarea:focus { border-color: var(--accent2); }
+  .mod-input::placeholder, .mod-textarea::placeholder { color: var(--muted); font-size: 14px; }
+
+  .mod-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .mod-submit-wrap { text-align: center; padding: 50px 0 0; }
+  .mod-submit {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--white); background: transparent; border: 1px solid var(--accent);
+    padding: 16px 48px; cursor: crosshair; transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .mod-submit::before {
+    content: ''; position: absolute; left: -100%; top: 0; bottom: 0; width: 100%;
+    background: rgba(139,115,85,0.1); transition: left 0.4s ease;
+  }
+  .mod-submit:hover::before { left: 0; }
+  .mod-submit:hover { border-color: var(--white); }
+  .mod-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .mod-status {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+    text-align: center; margin-top: 16px; min-height: 20px; color: var(--muted);
+  }
+  .mod-status.success { color: var(--accent); }
+  .mod-status.error   { color: var(--danger); }
+
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { gap: 20px; }
@@ -235,6 +339,9 @@
     .stats-grid { grid-template-columns: 1fr; }
     .event-item { grid-template-columns: 1fr; gap: 10px; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
+    .mod-form-wrap { padding: 40px 24px 80px; }
+    .mod-row { grid-template-columns: 1fr; }
+    #mod-back { left: 16px; top: 16px; }
   }
 </style>
 </head>
@@ -266,7 +373,7 @@
     </svg>
   </div>
   <h1 class="hero-title">AFFINITY</h1>
-  <p class="hero-sub">A multiplayer horror game with lots of things to expore ad find</p>
+  <p class="hero-sub">A multiplayer horror game with lots of things to explore and find</p>
   <div class="hero-divider"></div>
 </section>
 
@@ -275,21 +382,16 @@
     <div class="section-label">01 — About</div>
     <h2 class="section-title">What is Affinity?</h2>
     <div class="about-grid">
-
-<div class="about-text">
-  <p><strong>What is Affinity?</strong></p>
-  <p>Affinity is a horror game with two levels: <strong>The Complex</strong> and <strong>The Sewers</strong>, each with unique objectives to complete before progressing.</p>
-
-  <p><strong>Game Features:</strong></p>
-  <p>Expect suspenseful gameplay with an upcoming <strong>PvP mode</strong> and a shop offering <strong>cosmetics</strong> and <strong>bundles</strong>.</p>
-
-  <p><strong>Servers:</strong></p>
-  <p>There are <strong>five public servers</strong> and the option for <strong>private servers</strong> to play with friends.</p>
-
-  <p><strong>Live Events:</strong></p>
-  <p>Enjoy random <strong>live events</strong> that offer limited-time challenges and surprises!</p>
-</div>
-
+      <div class="about-text">
+        <p><strong>What is Affinity?</strong></p>
+        <p>Affinity is a horror game with two levels: <strong>The Complex</strong> and <strong>The Sewers</strong>, each with unique objectives to complete before progressing.</p>
+        <p><strong>Game Features:</strong></p>
+        <p>Expect suspenseful gameplay with an upcoming <strong>PvP mode</strong> and a shop offering <strong>cosmetics</strong> and <strong>bundles</strong>.</p>
+        <p><strong>Servers:</strong></p>
+        <p>There are <strong>five public servers</strong> and the option for <strong>private servers</strong> to play with friends.</p>
+        <p><strong>Live Events:</strong></p>
+        <p>Enjoy random <strong>live events</strong> that offer limited-time challenges and surprises!</p>
+      </div>
       <div class="about-sidebar">
         <div class="about-tag">
           <div class="about-tag-label">Genre</div>
@@ -308,11 +410,9 @@
           <div class="about-tag-value">Up And Running</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-
 
 <section id="levels">
   <div class="container">
@@ -322,7 +422,6 @@
   </div>
 </section>
 
-
 <section id="events">
   <div class="container">
     <div class="section-label">03 — Events</div>
@@ -330,7 +429,6 @@
     <div class="events-list" id="events-list"></div>
   </div>
 </section>
-
 
 <section id="community">
   <div class="container">
@@ -351,8 +449,13 @@
           </svg>
           Join Discord
         </a>
+        <button class="btn btn-mod" onclick="openModOverlay()">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1L7.5 4.5H11L8.5 6.5L9.5 10L6 8L2.5 10L3.5 6.5L1 4.5H4.5L6 1Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+          </svg>
+          Join Our Moderation Team
+        </button>
       </div>
-
     </div>
   </div>
 </section>
@@ -401,44 +504,219 @@
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+<style>
+  @keyframes fadeOverlay { to { opacity: 0; } }
+  @keyframes grainShift  { 0%{transform:translate(0,0);}25%{transform:translate(-2%,-3%);}50%{transform:translate(3%,2%);}75%{transform:translate(-1%,4%);}100%{transform:translate(2%,-1%);} }
+  @keyframes pulseGlow   { 0%,100%{opacity:.35;transform:scale(1);}50%{opacity:.85;transform:scale(1.12);} }
+  @keyframes leakFlicker { 0%,94%,100%{opacity:1;}95%{opacity:.05;}97%{opacity:.4;}99%{opacity:1;} }
+  @keyframes titleGlitch { 0%,89%,100%{opacity:1;text-shadow:none;}90%{opacity:.8;text-shadow:3px 0 #cc0000,-3px 0 #004444;}91%{opacity:1;text-shadow:none;}92%{opacity:.9;text-shadow:-2px 0 #8b0000;}93%{opacity:1;text-shadow:none;} }
+
+  .red-pulse-bg { position:absolute;width:700px;height:350px;background:radial-gradient(ellipse,rgba(139,0,0,.4) 0%,transparent 70%);animation:pulseGlow 3s ease-in-out infinite;pointer-events:none; }
+  .hero-eyebrow { font-family:'Courier Prime',monospace;font-size:.6rem;letter-spacing:.35em;color:#cc0000;text-transform:uppercase;margin-bottom:2rem;animation:leakFlicker 6s infinite; }
+  .leak-title   { font-family:'Cinzel Decorative',serif;font-size:clamp(3rem,12vw,9rem);font-weight:900;color:#c8c2b4;letter-spacing:.15em;line-height:1;animation:titleGlitch 8s infinite 1s; }
+  .hero-line    { width:180px;height:1px;background:linear-gradient(90deg,transparent,#8b0000,transparent);margin:2rem auto;animation:pulseGlow 2.5s ease-in-out infinite; }
+  #countdown    { font-family:'Courier Prime',monospace;font-size:clamp(1rem,3vw,1.6rem);letter-spacing:.25em;color:#c8c2b4;margin-bottom:2rem;font-variant-numeric:tabular-nums; }
+  #countdown .label { display:block;font-size:.55rem;letter-spacing:.4em;color:#6e6e6e;margin-bottom:.5rem; }
+  #countdown .units { display:flex;gap:1.5rem;justify-content:center;align-items:flex-end; }
+  #countdown .unit  { display:flex;flex-direction:column;align-items:center;gap:.3rem; }
+  #countdown .num   { font-size:clamp(2rem,6vw,4rem);font-family:'Cinzel Decorative',serif;color:#c8c2b4;line-height:1;animation:titleGlitch 8s infinite; }
+  #countdown .unit-label { font-size:.5rem;letter-spacing:.3em;color:#6e6e6e; }
+  #countdown .sep   { font-size:clamp(2rem,6vw,4rem);color:#8b0000;line-height:1;padding-bottom:.2rem; }
+</style>
+<button id="leak-close" onclick="closeLeak()">✕ &nbsp;Close</button>
+<div id="leak-overlay">
+  <div id="intro-overlay" style="position:fixed;inset:0;background:#000;z-index:9000;pointer-events:none;animation:fadeOverlay 2.5s ease-out 0.3s forwards;"></div>
+  <div id="grain" style="position:fixed;top:-50%;left:-50%;width:200%;height:200%;z-index:1;pointer-events:none;opacity:0.035;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);animation:grainShift 0.15s steps(1) infinite;"></div>
+  <canvas id="leakCanvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5;"></canvas>
+  <section id="leak-hero" style="position:relative;z-index:10;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;background:#080808;">
+    <div class="red-pulse-bg"></div>
+    <div class="hero-eyebrow">// AFFINITY — LIVE EVENT //</div>
+    <h1 class="leak-title">OFFICE</h1>
+    <div class="hero-line"></div>
+    <div id="countdown"></div>
+  </section>
+</div>
+
+
+
+<button id="mod-back" onclick="closeModOverlay()">← &nbsp;Back</button>
+<div id="mod-overlay">
+  <div class="mod-hero">
+    <div class="mod-hero-lines"></div>
+    <div class="mod-eyebrow">// Affinity VR — Staff Recruitment //</div>
+    <h1 class="mod-title">Moderation</h1>
+    <p class="mod-subtitle">Apply to join the team</p>
+    <div class="mod-hero-divider"></div>
+  </div>
+
+  <div class="mod-form-wrap">
+
+    <form id="modForm" autocomplete="off">
+
+      <div class="mod-section">
+        <div class="mod-section-title">01 — Basic Information</div>
+        <div class="mod-row">
+          <div class="mod-field">
+            <label class="mod-label" for="username">Username (In-Game)</label>
+            <input class="mod-input" type="text" id="username" name="Username" placeholder="YourUsername" required>
+          </div>
+          <div class="mod-field">
+            <label class="mod-label" for="displayname">Display Name</label>
+            <input class="mod-input" type="text" id="displayname" name="Display Name" placeholder="Display Name" required>
+          </div>
+        </div>
+        <div class="mod-row">
+          <div class="mod-field">
+            <label class="mod-label" for="age">Age</label>
+            <input class="mod-input" type="number" id="age" name="Age" placeholder="16" required>
+          </div>
+          <div class="mod-field">
+            <label class="mod-label" for="timezone">Time Zone</label>
+            <input class="mod-input" type="text" id="timezone" name="Time Zone" placeholder="EST / PST / UTC+1 ..." required>
+          </div>
+        </div>
+        <div class="mod-field">
+          <label class="mod-label" for="platform">Platform</label>
+          <input class="mod-input" type="text" id="platform" name="Platform" placeholder="Quest2 / Quest 3S / Quest 3" required>
+        </div>
+      </div>
+
+      <div class="mod-section">
+        <div class="mod-section-title">02 — Contact</div>
+        <div class="mod-row">
+          <div class="mod-field">
+            <label class="mod-label" for="discord">Discord Username</label>
+            <input class="mod-input" type="text" id="discord" name="Discord" placeholder="username#0000" required>
+          </div>
+          <div class="mod-field">
+            <label class="mod-label" for="email">Email (optional)</label>
+            <input class="mod-input" type="email" id="email" name="Email" placeholder="you@example.com">
+          </div>
+        </div>
+      </div>
+
+      <div class="mod-section">
+        <div class="mod-section-title">03 — Experience</div>
+        <div class="mod-row">
+          <div class="mod-field">
+            <label class="mod-label" for="experience-time">How long have you played Affinity VR?</label>
+            <input class="mod-input" type="text" id="experience-time" name="Time Played" placeholder="e.g. 3 months" required>
+          </div>
+          <div class="mod-field">
+            <label class="mod-label" for="experience-hours">Hours per week?</label>
+            <input class="mod-input" type="text" id="experience-hours" name="Hours Per Week" placeholder="e.g. 10 hrs/week" required>
+          </div>
+        </div>
+        <div class="mod-field">
+          <label class="mod-label" for="experience-moderation">Prior moderation experience? (explain or write N/A)</label>
+          <textarea class="mod-textarea" id="experience-moderation" name="Moderation Experience" placeholder="Other games, Discord servers, communities..." required></textarea>
+        </div>
+      </div>
+
+      <div class="mod-section">
+        <div class="mod-section-title">04 — Moderation Knowledge</div>
+        <div class="mod-field">
+          <label class="mod-label" for="harassment">A player is harassing others. What do you do?</label>
+          <textarea class="mod-textarea" id="harassment" name="Harassment Handling" required></textarea>
+        </div>
+        <div class="mod-field">
+          <label class="mod-label" for="repeated-rules">Someone keeps breaking rules repeatedly. How do you handle it?</label>
+          <textarea class="mod-textarea" id="repeated-rules" name="Repeated Rules" required></textarea>
+        </div>
+        <div class="mod-field">
+          <label class="mod-label" for="good-moderator">What does being a good moderator mean to you?</label>
+          <textarea class="mod-textarea" id="good-moderator" name="Good Moderator" required></textarea>
+        </div>
+      </div>
+
+      <div class="mod-section">
+        <div class="mod-section-title">05 — Situational</div>
+        <div class="mod-field">
+          <label class="mod-label" for="false-cheat">A player falsely accuses another of cheating. What do you do?</label>
+          <textarea class="mod-textarea" id="false-cheat" name="False Cheat" required></textarea>
+        </div>
+        <div class="mod-field">
+          <label class="mod-label" for="voice-argue">Two players are arguing loudly in voice chat. How do you respond?</label>
+          <textarea class="mod-textarea" id="voice-argue" name="Voice Argument" required></textarea>
+        </div>
+      </div>
+
+      <div class="mod-section">
+        <div class="mod-section-title">06 — About You</div>
+        <div class="mod-field">
+          <label class="mod-label" for="why-moderator">Why do you want to moderate Affinity VR?</label>
+          <textarea class="mod-textarea" id="why-moderator" name="Why Moderator" required></textarea>
+        </div>
+        <div class="mod-field">
+          <label class="mod-label" for="standout">What makes you stand out from other applicants?</label>
+          <textarea class="mod-textarea" id="standout" name="Standout" required></textarea>
+        </div>
+        <div class="mod-field">
+          <label class="mod-label" for="teamwork">How well do you work with a team?</label>
+          <textarea class="mod-textarea" id="teamwork" name="Teamwork" required></textarea>
+        </div>
+      </div>
+
+      <div class="mod-section">
+        <div class="mod-section-title">07 — Availability</div>
+        <div class="mod-row">
+          <div class="mod-field">
+            <label class="mod-label" for="active-days">Most active days</label>
+            <input class="mod-input" type="text" id="active-days" name="Active Days" placeholder="e.g. Mon, Wed, Sat" required>
+          </div>
+          <div class="mod-field">
+            <label class="mod-label" for="active-times">Usual online hours</label>
+            <input class="mod-input" type="text" id="active-times" name="Active Times" placeholder="e.g. 6pm–10pm EST" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod-submit-wrap">
+        <button class="mod-submit" type="submit" id="mod-submit-btn">Submit Application</button>
+        <div class="mod-status" id="mod-status"></div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<script data-cfasync="false">
 
 
 const levelsData = [
-  { number: "01", name: "The Complex",  desc: "Scary.", playable: true  },
-  { number: "02", name: "The Sewers",  desc: "Poopy.", playable: true  },
-  { number: "03", name: "???",              desc: "",                         playable: false },
-  { number: "04", name: "???",              desc: "",                         playable: false },
-  { number: "05", name: "???",              desc: "",                         playable: false },
+  { number: "01", name: "The Complex", desc: "Scary.",  playable: true  },
+  { number: "02", name: "The Sewers",  desc: "Poopy.",  playable: true  },
+  { number: "03", name: "???",         desc: "",         playable: false },
+  { number: "04", name: "???",         desc: "",         playable: false },
+  { number: "05", name: "???",         desc: "",         playable: false },
 ];
-
 
 const eventsData = [
   { date: "4/4/2026", name: "Office.", desc: "Do you remember.?", type: "major", link: true },
 ];
 
-
 const cosmeticsData = [
   { name: "CatEars",    type: "Hats", price: 800  },
   { name: "Plunger",    type: "Hats", price: 600  },
-  { name: "HeadBand",   type: "Hats", price: 500  },  
-  { name: "TopHat",     type: "Hats", price: 700  }, 
-  { name: "CowBoy",     type: "Hats", price: 750  }, 
-  { name: "PinkTopHat", type: "Hats", price: 900  },  
-  { name: "SkiMask",    type: "Hats", price: 650  },  
-  { name: "Banana",     type: "Hats", price: 1000 },  
+  { name: "HeadBand",   type: "Hats", price: 500  },
+  { name: "TopHat",     type: "Hats", price: 700  },
+  { name: "CowBoy",     type: "Hats", price: 750  },
+  { name: "PinkTopHat", type: "Hats", price: 900  },
+  { name: "SkiMask",    type: "Hats", price: 650  },
+  { name: "Banana",     type: "Hats", price: 1000 },
 ];
 
-
 const bundlesData = [
-{ name: "Classic Bundle", price: "$9.99", contents: "black/white (Shirt/Hat), cane, spectacle" },  
-{ name: "Supporter Bundle", price: "$19.99", contents: "purple eyes, supporter tag, purple sparkler " }, 
-{ name: "Gun Bundle", price: "$9.99", contents: "6 custom made working guns" }, 
-{ name: "Galaxy Bundle", price: "$9.99", contents: "galaxy hat,  galaxy shirt" }, 
-{ name: "Night Vision Bundle", price: "$4.99", contents: "green night vision" }, 
-{ name: "Size Changer Bundle", price: "$4.99", contents: "size changer" },
-{ name: "Monster Hunter Bundle", price: "$4.99", contents: "monster tracker, beeping watch (beeps when monsters are close)" },
-{ name: "Menu Bundle", price: "$9.99", contents: "fly,speed,freeze,0grav,plats,noclip,long arms,xray,anti kill" }, 
+  { name: "Classic Bundle",        price: "$9.99",  contents: "black/white (Shirt/Hat), cane, spectacle" },
+  { name: "Supporter Bundle",      price: "$19.99", contents: "purple eyes, supporter tag, purple sparkler" },
+  { name: "Gun Bundle",            price: "$9.99",  contents: "6 custom made working guns" },
+  { name: "Galaxy Bundle",         price: "$9.99",  contents: "galaxy hat, galaxy shirt" },
+  { name: "Night Vision Bundle",   price: "$4.99",  contents: "green night vision" },
+  { name: "Size Changer Bundle",   price: "$4.99",  contents: "size changer" },
+  { name: "Monster Hunter Bundle", price: "$4.99",  contents: "monster tracker, beeping watch (beeps when monsters are close)" },
+  { name: "Menu Bundle",           price: "$9.99",  contents: "fly,speed,freeze,0grav,plats,noclip,long arms,xray,anti kill" },
 ];
 
 const FIREBASE_URL = "https://affinity-dddcf-default-rtdb.firebaseio.com/";
@@ -480,58 +758,42 @@ if (eventsData.length === 0) {
 
 
 const cosmeticList = document.getElementById("cosmetic-list");
-if (cosmeticsData.length === 0) {
-  cosmeticList.innerHTML = `<div class="error-text">// Shop is empty</div>`;
-} else {
-  cosmeticsData.forEach(c => {
-    const item = document.createElement("div");
-    item.className = "cosmetic-item";
-    item.innerHTML = `
-      <div class="cosmetic-item-left">
-        <span class="cosmetic-name">${c.name}</span>
-        <span class="cosmetic-tag">${c.type}</span>
-      </div>
-      <span class="cosmetic-price">${c.price.toLocaleString()} BX</span>`;
-    cosmeticList.appendChild(item);
-  });
-}
-
+cosmeticsData.forEach(c => {
+  const item = document.createElement("div");
+  item.className = "cosmetic-item";
+  item.innerHTML = `
+    <div class="cosmetic-item-left">
+      <span class="cosmetic-name">${c.name}</span>
+      <span class="cosmetic-tag">${c.type}</span>
+    </div>
+    <span class="cosmetic-price">${c.price.toLocaleString()} BX</span>`;
+  cosmeticList.appendChild(item);
+});
 
 const bundleList = document.getElementById("bundle-list");
-if (bundlesData.length === 0) {
-  bundleList.innerHTML = `<div class="error-text">// No bundles available</div>`;
-} else {
-  bundlesData.forEach(b => {
-    const item = document.createElement("div");
-    item.className = "bundle-item";
-    item.innerHTML = `
-      <div class="bundle-header">
-        <span class="bundle-name">${b.name}</span>
-        <span class="bundle-price">${b.price}</span>
-      </div>
-      ${b.contents ? `<div class="bundle-contents">${b.contents}</div>` : ""}`;
-    bundleList.appendChild(item);
-  });
-}
-
-
+bundlesData.forEach(b => {
+  const item = document.createElement("div");
+  item.className = "bundle-item";
+  item.innerHTML = `
+    <div class="bundle-header">
+      <span class="bundle-name">${b.name}</span>
+      <span class="bundle-price">${b.price}</span>
+    </div>
+    ${b.contents ? `<div class="bundle-contents">${b.contents}</div>` : ""}`;
+  bundleList.appendChild(item);
+});
 
 async function fetchPhotonStats() {
   const playerEl  = document.getElementById("stat-player-count");
   const playerSub = document.getElementById("stat-player-sub");
   const serverEl  = document.getElementById("server-list");
-
   try {
     const res  = await fetch(FIREBASE_URL);
     if (!res.ok) throw new Error();
     const data = await res.json();
-
-   
     const total = data.playerCount || 0;
     playerEl.textContent  = total;
     playerSub.textContent = total === 1 ? "player online" : "players online";
-
-  
     const rooms = data.rooms || [];
     if (rooms.length === 0) {
       serverEl.innerHTML = `<div class="error-text">// No active servers</div>`;
@@ -540,9 +802,7 @@ async function fetchPhotonStats() {
       rooms.forEach(r => {
         const row = document.createElement("div");
         row.className = "server-row";
-        row.innerHTML = `
-          <span class="server-name">${r.name}</span>
-          <span class="server-count">${r.players}/${r.maxPlayers}</span>`;
+        row.innerHTML = `<span class="server-name">${r.name}</span><span class="server-count">${r.players}/${r.maxPlayers}</span>`;
         serverEl.appendChild(row);
       });
     }
@@ -552,11 +812,10 @@ async function fetchPhotonStats() {
     serverEl.innerHTML    = `<div class="error-text">// Connection failed</div>`;
   }
 }
-
 fetchPhotonStats();
 setInterval(fetchPhotonStats, 60000);
 
-// ── Leak overlay open/close ───────────────────────────────────
+let leakAnimId = null;
 function openLeak() {
   const overlay = document.getElementById('leak-overlay');
   const closeBtn = document.getElementById('leak-close');
@@ -567,7 +826,6 @@ function openLeak() {
   initLeakCanvas();
   startCountdown();
 }
-
 function closeLeak() {
   const overlay = document.getElementById('leak-overlay');
   const closeBtn = document.getElementById('leak-close');
@@ -580,10 +838,6 @@ function closeLeak() {
     document.body.style.overflow = '';
   }, 400);
 }
-
-// ── Leak canvas ───────────────────────────────────────────────
-let leakAnimId = null;
-
 function initLeakCanvas() {
   if (leakAnimId) { cancelAnimationFrame(leakAnimId); leakAnimId = null; }
   const canvas = document.getElementById('leakCanvas');
@@ -592,18 +846,15 @@ function initLeakCanvas() {
   function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   resize();
   window.addEventListener('resize', resize);
-
   function drawChair(ctx,x,y,s,r,a){ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.rotate(r);ctx.strokeStyle='#8b0000';ctx.fillStyle='rgba(30,20,20,0.7)';ctx.lineWidth=s*.04;ctx.beginPath();ctx.rect(-s*.35,-s*.05,s*.7,s*.2);ctx.fill();ctx.stroke();ctx.beginPath();ctx.rect(-s*.3,-s*.55,s*.6,s*.5);ctx.fill();ctx.stroke();for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(-s*.2+i*s*.2,-s*.5);ctx.lineTo(-s*.2+i*s*.2,-s*.05);ctx.stroke();}ctx.beginPath();ctx.moveTo(-s*.3,s*.15);ctx.lineTo(-s*.35,s*.6);ctx.moveTo(s*.3,s*.15);ctx.lineTo(s*.35,s*.6);ctx.moveTo(-s*.1,s*.15);ctx.lineTo(-s*.12,s*.6);ctx.moveTo(s*.1,s*.15);ctx.lineTo(s*.12,s*.6);ctx.stroke();ctx.beginPath();ctx.moveTo(-s*.35,s*.4);ctx.lineTo(s*.35,s*.4);ctx.stroke();ctx.restore();}
   function drawOfficeChair(ctx,x,y,s,r,a){ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.rotate(r);ctx.strokeStyle='#4a3030';ctx.fillStyle='rgba(20,15,15,0.8)';ctx.lineWidth=s*.04;ctx.beginPath();ctx.ellipse(0,0,s*.4,s*.25,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.beginPath();ctx.ellipse(0,-s*.5,s*.32,s*.28,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(0,s*.25);ctx.lineTo(0,s*.5);ctx.lineWidth=s*.08;ctx.stroke();ctx.lineWidth=s*.04;for(let i=0;i<5;i++){const ag=(i/5)*Math.PI*2;ctx.beginPath();ctx.moveTo(0,s*.5);ctx.lineTo(Math.cos(ag)*s*.45,s*.5+Math.sin(ag)*s*.2);ctx.stroke();ctx.beginPath();ctx.arc(Math.cos(ag)*s*.45,s*.5+Math.sin(ag)*s*.2,s*.06,0,Math.PI*2);ctx.fill();ctx.stroke();}ctx.lineWidth=s*.035;ctx.beginPath();ctx.moveTo(-s*.4,-s*.1);ctx.lineTo(-s*.4,-s*.4);ctx.lineTo(-s*.28,-s*.4);ctx.moveTo(s*.4,-s*.1);ctx.lineTo(s*.4,-s*.4);ctx.lineTo(s*.28,-s*.4);ctx.stroke();ctx.restore();}
   function drawClipboard(ctx,x,y,s,r,a){ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.rotate(r);ctx.fillStyle='rgba(20,15,10,.85)';ctx.strokeStyle='#3a2a1a';ctx.lineWidth=s*.03;ctx.beginPath();ctx.roundRect(-s*.3,-s*.45,s*.6,s*.9,s*.04);ctx.fill();ctx.stroke();ctx.fillStyle='#2a1a1a';ctx.beginPath();ctx.roundRect(-s*.12,-s*.52,s*.24,s*.14,s*.03);ctx.fill();ctx.stroke();ctx.strokeStyle='rgba(139,0,0,.3)';ctx.lineWidth=s*.02;for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(-s*.22,-s*.25+i*s*.15);ctx.lineTo(s*.22,-s*.25+i*s*.15);ctx.stroke();}ctx.restore();}
   function drawFile(ctx,x,y,s,r,a){ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.rotate(r);ctx.fillStyle='rgba(18,14,10,.9)';ctx.strokeStyle='#2e2318';ctx.lineWidth=s*.03;ctx.beginPath();ctx.moveTo(-s*.35,-s*.4);ctx.lineTo(-s*.35,s*.45);ctx.lineTo(s*.35,s*.45);ctx.lineTo(s*.35,-s*.3);ctx.lineTo(s*.1,-s*.3);ctx.lineTo(-s*.05,-s*.4);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='rgba(30,20,12,.9)';ctx.beginPath();ctx.rect(-s*.35,-s*.52,s*.22,s*.14);ctx.fill();ctx.stroke();ctx.fillStyle='rgba(139,0,0,.5)';ctx.font=`bold ${s*.1}px monospace`;ctx.fillText('██████',-s*.2,s*.1);ctx.restore();}
   function drawMonitor(ctx,x,y,s,r,a){ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.rotate(r);ctx.strokeStyle='#3a1a1a';ctx.fillStyle='rgba(12,8,8,.9)';ctx.lineWidth=s*.035;ctx.beginPath();ctx.roundRect(-s*.5,-s*.4,s,s*.65,s*.04);ctx.fill();ctx.stroke();ctx.fillStyle='rgba(0,5,0,.9)';ctx.beginPath();ctx.rect(-s*.43,-s*.33,s*.86,s*.5);ctx.fill();ctx.strokeStyle='rgba(139,0,0,.4)';ctx.lineWidth=s*.015;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(-s*.43,-s*.23+i*s*.13);ctx.lineTo(s*.43,-s*.23+i*s*.13);ctx.stroke();}ctx.strokeStyle='#3a1a1a';ctx.lineWidth=s*.06;ctx.beginPath();ctx.moveTo(0,s*.25);ctx.lineTo(0,s*.45);ctx.stroke();ctx.beginPath();ctx.moveTo(-s*.25,s*.45);ctx.lineTo(s*.25,s*.45);ctx.lineWidth=s*.04;ctx.stroke();ctx.restore();}
-
   const drawFns={chair:drawChair,officeChair:drawOfficeChair,clipboard:drawClipboard,file:drawFile,monitor:drawMonitor};
   const types=Object.keys(drawFns);
   function makeItem(){return{type:types[Math.floor(Math.random()*types.length)],x:Math.random()*W,y:Math.random()*H,size:28+Math.random()*55,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.15,rot:Math.random()*Math.PI*2,vrot:(Math.random()-.5)*.004,alpha:0.07+Math.random()*.2,ft:Math.random()*200,fr:180+Math.random()*300};}
   for(let i=0;i<22;i++) items.push(makeItem());
-
   function animate(){
     ctx.clearRect(0,0,W,H);
     items.forEach(item=>{
@@ -618,11 +869,8 @@ function initLeakCanvas() {
   }
   animate();
 }
-
-// ── Countdown ─────────────────────────────────────────────────
 const countdownTarget = new Date('2026-04-04T00:00:00Z');
 let countdownTimer = null;
-
 function startCountdown() {
   if (countdownTimer) clearTimeout(countdownTimer);
   tick();
@@ -638,50 +886,76 @@ function tick() {
   countdownTimer=setTimeout(tick,1000);
 }
 
-// ── Make Office event clickable ───────────────────────────────
-// Runs after DOM is ready — finds any event-item with data-leak="true" and wires up click
+function openModOverlay() {
+  const overlay = document.getElementById('mod-overlay');
+  const backBtn = document.getElementById('mod-back');
+  document.body.style.overflow = 'hidden';
+  overlay.classList.add('active');
+  backBtn.classList.add('active');
+  overlay.scrollTop = 0;
+  requestAnimationFrame(() => overlay.classList.add('visible'));
+}
+function closeModOverlay() {
+  const overlay = document.getElementById('mod-overlay');
+  const backBtn = document.getElementById('mod-back');
+  overlay.classList.remove('visible');
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    backBtn.classList.remove('active');
+    document.body.style.overflow = '';
+  }, 400);
+}
+
+const webhookURL = "https://discord.com/api/webhooks/1488430594453934121/2Iq4rDaZW3KrBYDBYkG5j_o8FAGQdD073Ikdm5eg8vTmi5YUbF0lHvhhwjs0oW37lYHS";
+document.getElementById("modForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById("mod-submit-btn");
+  const status = document.getElementById("mod-status");
+  const form = e.target;
+
+  const allFilled = [...form.elements].every(el =>
+    (el.tagName === "INPUT" || el.tagName === "TEXTAREA")
+      ? (el.hasAttribute("required") ? el.value.trim() !== "" : true)
+      : true
+  );
+  if (!allFilled) { status.textContent = "// Fill out all required fields"; status.className = "mod-status error"; return; }
+
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+  status.textContent = "// Transmitting...";
+  status.className = "mod-status";
+
+  const formData = new FormData(form);
+  let content = "**New Moderator Application — Affinity VR**\n\n";
+  formData.forEach((value, key) => { content += `**${key}:** ${value}\n`; });
+
+  try {
+    const res = await fetch(webhookURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content })
+    });
+    if (res.ok) {
+      btn.textContent = "Application Sent";
+      status.textContent = "// Received. We'll be in touch via Discord.";
+      status.className = "mod-status success";
+      form.reset();
+    } else {
+      throw new Error();
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = "Submit Application";
+    status.textContent = "// Transmission failed. Try again.";
+    status.className = "mod-status error";
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.event-item[data-leak="true"]').forEach(el => {
     el.addEventListener('click', openLeak);
   });
 });
 </script>
-
-<style>
-  @keyframes fadeOverlay { to { opacity: 0; } }
-  @keyframes grainShift  { 0%{transform:translate(0,0);}25%{transform:translate(-2%,-3%);}50%{transform:translate(3%,2%);}75%{transform:translate(-1%,4%);}100%{transform:translate(2%,-1%);} }
-  @keyframes pulseGlow   { 0%,100%{opacity:.35;transform:scale(1);}50%{opacity:.85;transform:scale(1.12);} }
-  @keyframes leakFlicker { 0%,94%,100%{opacity:1;}95%{opacity:.05;}97%{opacity:.4;}99%{opacity:1;} }
-  @keyframes titleGlitch { 0%,89%,100%{opacity:1;text-shadow:none;}90%{opacity:.8;text-shadow:3px 0 #cc0000,-3px 0 #004444;}91%{opacity:1;text-shadow:none;}92%{opacity:.9;text-shadow:-2px 0 #8b0000;}93%{opacity:1;text-shadow:none;} }
-
-  .red-pulse-bg { position:absolute;width:700px;height:350px;background:radial-gradient(ellipse,rgba(139,0,0,.4) 0%,transparent 70%);animation:pulseGlow 3s ease-in-out infinite;pointer-events:none; }
-  .hero-eyebrow { font-family:'Courier Prime',monospace;font-size:.6rem;letter-spacing:.35em;color:#cc0000;text-transform:uppercase;margin-bottom:2rem;animation:leakFlicker 6s infinite; }
-  .leak-title   { font-family:'Cinzel Decorative',serif;font-size:clamp(3rem,12vw,9rem);font-weight:900;color:#c8c2b4;letter-spacing:.15em;line-height:1;animation:titleGlitch 8s infinite 1s; }
-  .hero-line    { width:180px;height:1px;background:linear-gradient(90deg,transparent,#8b0000,transparent);margin:2rem auto;animation:pulseGlow 2.5s ease-in-out infinite; }
-  #countdown    { font-family:'Courier Prime',monospace;font-size:clamp(1rem,3vw,1.6rem);letter-spacing:.25em;color:#c8c2b4;margin-bottom:2rem;font-variant-numeric:tabular-nums; }
-  #countdown .label { display:block;font-size:.55rem;letter-spacing:.4em;color:#6e6e6e;margin-bottom:.5rem; }
-  #countdown .units { display:flex;gap:1.5rem;justify-content:center;align-items:flex-end; }
-  #countdown .unit  { display:flex;flex-direction:column;align-items:center;gap:.3rem; }
-  #countdown .num   { font-size:clamp(2rem,6vw,4rem);font-family:'Cinzel Decorative',serif;color:#c8c2b4;line-height:1;animation:titleGlitch 8s infinite; }
-  #countdown .unit-label { font-size:.5rem;letter-spacing:.3em;color:#6e6e6e; }
-  #countdown .sep   { font-size:clamp(2rem,6vw,4rem);color:#8b0000;line-height:1;padding-bottom:.2rem; }
-  .discord-link { display:inline-block;margin-top:1rem;font-family:'Courier Prime',monospace;font-size:.6rem;letter-spacing:.35em;color:#6e6e6e;text-decoration:none;border:1px solid #2a2a2a;padding:.5rem 1.2rem;transition:all .3s; }
-  .discord-link:hover { color:#c8c2b4;border-color:#8b0000; }
-</style>
-<button id="leak-close" onclick="closeLeak()">✕ &nbsp;Close</button>
-<div id="leak-overlay">
-  <div id="intro-overlay" style="position:fixed;inset:0;background:#000;z-index:9000;pointer-events:none;animation:fadeOverlay 2.5s ease-out 0.3s forwards;"></div>
-  <div id="grain" style="position:fixed;top:-50%;left:-50%;width:200%;height:200%;z-index:1;pointer-events:none;opacity:0.035;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);animation:grainShift 0.15s steps(1) infinite;"></div>
-  <canvas id="leakCanvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5;"></canvas>
-  <section id="leak-hero" style="position:relative;z-index:10;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;background:#080808;">
-    <div class="red-pulse-bg"></div>
-    <div class="hero-eyebrow">// AFFINITY — LIVE EVENT //</div>
-    <h1 class="leak-title">OFFICE</h1>
-    <div class="hero-line"></div>
-    <div id="countdown"></div>
-
-  </section>
-</div>
-
 </body>
 </html>
